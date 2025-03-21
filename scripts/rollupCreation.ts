@@ -104,20 +104,20 @@ export async function createRollup(
 
     const deployParams = isDevDeployment
       ? await _getDevRollupConfig(
-          feeToken,
-          validatorWalletCreator,
-          espressoTEEVerifierAddress
-        )
+        feeToken,
+        validatorWalletCreator,
+        espressoTEEVerifierAddress
+      )
       : {
-          config: config.rollupConfig,
-          validators: config.validators,
-          maxDataSize: ethers.BigNumber.from(maxDataSize),
-          nativeToken: feeToken,
-          deployFactoriesToL2: true,
-          maxFeePerGasForRetryables: MAX_FER_PER_GAS,
-          batchPosters: config.batchPosters,
-          batchPosterManager: config.batchPosterManager,
-        }
+        config: config.rollupConfig,
+        validators: config.validators,
+        maxDataSize: ethers.BigNumber.from(maxDataSize),
+        nativeToken: feeToken,
+        deployFactoriesToL2: true,
+        maxFeePerGasForRetryables: MAX_FER_PER_GAS,
+        batchPosters: config.batchPosters,
+        batchPosterManager: config.batchPosterManager,
+      }
 
     const createRollupTx = await rollupCreator.createRollup(deployParams, {
       value: feeCost,
